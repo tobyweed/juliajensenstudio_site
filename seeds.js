@@ -15,58 +15,13 @@ var data = [
                 parent: "oil"
             },
             {
-                img: "/uploads/2989.jpg",
-                description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/2989.jpg",
-                description: "Placeholder image. XXXX",
-                parent: "oil"
-            },
-            {
                 img: "/uploads/img_1.png",
                 description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/img_1.png",
-                description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/2989.jpg",
-                description: "Placeholder image. XXXX",
                 parent: "oil"
             },
             {
                 img: "/uploads/storm_body.jpg",
                 description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/2989.jpg",
-                description: "Placeholder image. XXXX",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/img_1.png",
-                description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/2989.jpg",
-                description: "Placeholder image. XXXX",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/img_1.png",
-                description: "kjadfnljsaldf",
-                parent: "oil"
-            },
-            {
-                img: "/uploads/2989.jpg",
-                description: "Placeholder image. XXXX",
                 parent: "oil"
             }
         ]
@@ -74,31 +29,13 @@ var data = [
     {
         name: "encaustic",
         paintings: [ 
-            {
-                img: "/uploads/img_1.png",
-                description: "Placeholder image. XXXX",
-                parent: "encaustic"
-            },
-            {
-                img: "/uploads/img_2989.1.jpg",
-                description: "dsafasdfas",
-                parent: "encaustic"
-            },
-            {
-                img: "/uploads/img_1.2.png",
-                description: "Placeholder image. XXXX",
-                parent: "encaustic"
-            }
+            
         ]
     },
     {
         name: "wax",
         paintings: [ 
-            {
-                img: "http://placehold.it/500x500",
-                description: "Placeholder image. XXXX",
-                parent: "wax"
-            }
+            
         ]
     },
 ]
@@ -125,12 +62,12 @@ var info = [
 ]
 
 function seedDB(){
-    var newUser = new User({username: "juliajensen"});
-    User.register(newUser, "1553", function(err,user){
-            if(err){
-                console.log(err);
-            }
-    })
+    // var newUser = new User({username: "juliajensen"});
+    // User.register(newUser, "1553", function(err,user){
+    //         if(err){
+    //             console.log(err);
+    //         }
+    // })
 
     Collection.remove({}, function(err){
         if(err){
