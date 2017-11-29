@@ -1,6 +1,7 @@
 var mongoose = require("mongoose"),
     Collection = require("./models/collection"),
-    Info = require("./models/infopage")
+    Info = require("./models/infopage"),
+    User = require("./models/user")
     
 mongoose.connect("mongodb://tobyweed:hedwig1553@ds123976.mlab.com:23976/juliajensenstudio");
 
@@ -124,6 +125,12 @@ var info = [
 ]
 
 function seedDB(){
+    User.register("juliajensen", "1553", function(err,user){
+        if(err){
+            console.log(err);
+        }
+    })
+
     Collection.remove({}, function(err){
         if(err){
             console.log(err);
@@ -161,71 +168,3 @@ function seedDB(){
 }
 
 module.exports = seedDB();
-
-
-
-
-
-// var oil = [
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 0,
-//             parent: "oil"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 1,
-//             parent: "oil"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 2,
-//             parent: "oil"
-//         }
-//     ];
-    
-// var encaustic = [
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 0,
-//             parent: "encaustic"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 1,
-//             parent: "encaustic"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 2,
-//             parent: "encaustic"
-//         }
-//     ];
-
-// var wax = [
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 0,
-//             parent: "wax"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 1,
-//             parent: "wax"
-//         },
-//         {
-//             img: "http://placehold.it/500x500",
-//             description: "Placeholder image. XXXX",
-//             index: 2,
-//             parent: "wax"
-//         }
-//     ];
-    
