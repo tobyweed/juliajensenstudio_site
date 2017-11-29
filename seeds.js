@@ -125,10 +125,11 @@ var info = [
 ]
 
 function seedDB(){
-    User.register("juliajensen", "1553", function(err,user){
-        if(err){
-            console.log(err);
-        }
+    var newUser = new User({username: "juliajensen"});
+    User.register(newUser, "1553", function(err,user){
+            if(err){
+                console.log(err);
+            }
     })
 
     Collection.remove({}, function(err){
