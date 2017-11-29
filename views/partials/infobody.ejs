@@ -1,0 +1,64 @@
+<!--div which contains the page's contact-->
+<div class="row display-flex">
+    <!--photo for decoration-->
+    <div class="col-sm-6 infodiv">
+        <div class="container-fluid">
+            <img src="<%= info.img %>" class="img-responsive info-img"></img>
+            <!--if the user is logged in, show them the edit button. If you click the button, a form opens up.-->
+            <% if(currentUser){ %>
+                <button onclick="show('<%=infocode%>img')" id="<%=infocode%>imgbtn">Edit</button>
+                <form action="img/<%=page%>/?_method=PUT" enctype="multipart/form-data" method="POST" id="<%=infocode%>img" class="info-edit-form">
+                        <div class="form-group">
+                        <input type="file" id="<%=infocode%>imgarea" name="image"></textarea>
+                        <!--this button saves the text to the p and hides the form-->
+                        <button onclick="show('<%=infocode%>img')">Save</button>
+                    </div>
+                </form>
+            <% } %>
+        </div>
+        <div class="container-fluid">
+            <p class="info-desc"><%= info.desc %></p>
+            <!--if the user is logged in, show them the edit button. If you click the button, a form opens up.-->
+            <% if(currentUser){ %>
+                <button onclick="show('<%=infocode%>desc')" id="<%=infocode%>descbtn">Edit</button>
+                <form action="desc/<%=page%>/?_method=PUT" method="POST" id="<%=infocode%>desc" class="info-edit-form">
+                        <div class="form-group">
+                        <input type="text" id="<%=infocode%>descarea" name="info[desc]"></textarea>
+                        <!--this button saves the text to the p and hides the form-->
+                        <button onclick="show('<%=infocode%>desc')">Save</button>
+                    </div>
+                </form>
+            <% } %>
+        </div>
+    </div>
+    <!--text describing the page-->
+    <div class="col-sm-6 infodiv">
+        <p class="info-text"><%= info.text %></p>
+        <!--if the user is logged in, show them the edit button. If you click the button, a form opens up.-->
+        <% if(currentUser){ %>
+            <button onclick="show('<%=infocode%>text')" id="<%=infocode%>textbtn">Edit</button>
+            <form action="text/<%=page%>/?_method=PUT" method="POST" id="<%=infocode%>text" class="info-edit-form">
+                    <div class="form-group">
+                    <textarea id="<%=infocode%>textarea" name="info[text]"></textarea>
+                    <!--this button saves the text to the p and hides the form-->
+                    <button onclick="show('<%=infocode%>text')">Save</button>
+                </div>
+            </form>
+        <% } %>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //function to show and hide text edit forms on info pages.
+    function show(name) {
+        //show or hide the form, and switch the text to accurately respresent that process
+        $("#" + name).toggle();
+        var btnstate = $("#" + name + "btn").html();
+        if (btnstate === "Edit") {
+            $("#" + name + "btn").html("Hide");
+        }
+        else {
+            $("#" + name + "btn").html("Edit");
+        }
+    }
+</script>

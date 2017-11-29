@@ -1,0 +1,23 @@
+<div id="main">
+    <div id="leftCol">
+        <!-- Sidenav -->
+        <ul id="sidebar-nav">
+            <li class="menu paintings dropdown pre-break">paintings
+                <ul class="dropdown-contents">
+                    <li class="menu oil"><a href="/paintings/oil">oil on panel</a></li>
+                    <li class="menu encaustic"><a href="/paintings/encaustic">encaustic</a></li>
+                    <li class="menu wax pre-break"><a href="/paintings/wax">cold wax</a></li>
+                </ul>
+            </li>
+            <li class="menu workshops pre-break"><a href="/information/workshops">workshops</a></li>
+            <li class="menu statement pre-break"><a href="/information/statement">statement</a></li>
+            <li class="menu contact pre-break"><a href="/information/contact">contact</a></li>
+            <li class="menu instagram"><a href="/instagram">instagram</a></li>
+            <li><% if(currentUser) { %>
+                <a href="/logout">logout</a>
+            <% } %></li>
+        </ul>
+    </div>
+    
+    <div id="rightCol">
+    

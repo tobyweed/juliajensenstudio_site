@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<div class="image-block">
+    <div class="image-nav">
+        <span class="nav-arrows">
+            <% if(paintings[paintings.indexOf(painting)-1]) { %>
+                <a href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)-1%>">
+                      <span class="glyphicon glyphicon-menu-left"></span>
+                </a>
+            <% } %>
+            <a href="/paintings/<%=painting.parent%>">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            <% if(paintings[paintings.indexOf(painting)+1]) { %>
+                <a href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)+1%>">
+                      <span class="glyphicon glyphicon-menu-right"></span>
+                </a>
+            <% } %>
+        </span>
+        <span class="index-display"><%=paintings.indexOf(painting) + 1%>/<%=paintings.length%></span>
+    </div>
+    
+    <div class="inner-image">
+        <img src="<%=painting.img%>"></img>
+    </div>
+    
+    <div class="inner-desc">
+        <p>
+            <%= painting.description %>
+        </p>
+    </div>
+    
+    <!--These features are visible only to logged in users-->
+        <% if(currentUser) { %>
+            <!--Edit button-->
+            <a class="btn btn-warning btn-xs" href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/edit">Edit Painting</a>
+        
+            <!--Delete button-->
+            <form action="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/delete?_method=PUT" method="POST">
+               <button class="btn btn-danger btn-xs">Delete</button>
+           </form>
+        <% } %>
+</div>
+
+<% include ../partials/footer %>

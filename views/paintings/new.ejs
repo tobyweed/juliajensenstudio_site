@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1> Create a New painting</h1>
+        <div>
+            <form action="/paintings/<%=parent%>?_method=PUT" enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                    <input type="file" name="image" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Painting Description" name="description"></input>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Add Painting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
