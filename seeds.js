@@ -2,7 +2,7 @@ var mongoose = require("mongoose"),
     Collection = require("./models/collection"),
     Info = require("./models/infopage")
     
-mongoose.connect("mongodb://localhost/juliajensen_website");
+mongoose.connect("mongodb://tobyweed:hedwig1553@ds123976.mlab.com:23976/juliajensenstudio");
 
 var data = [
     {
@@ -14,7 +14,7 @@ var data = [
                 parent: "oil"
             },
             {
-                img: "/uploads/green_body.jpg",
+                img: "/uploads/2989.jpg",
                 description: "kjadfnljsaldf",
                 parent: "oil"
             },
