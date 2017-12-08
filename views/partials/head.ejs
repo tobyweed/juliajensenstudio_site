@@ -25,17 +25,17 @@
                             $("."+str).addClass("open");
                         } else {
                             $(".dropdown").hover( function(){
-                                $(".dropdown-contents").slideToggle(400)
+                                $(".dropdown-contents").stop().slideToggle(400)
                             })
                         }
                     } else if(str =="instagram"){
                         $("."+str).addClass("active");
                         $(".dropdown").hover( function(){
-                            $(".dropdown-contents").slideToggle(400)
+                            $(".dropdown-contents").stop().slideToggle(400)
                         })
                     } else {
                         $(".dropdown").hover( function(){
-                            $(".dropdown-contents").slideToggle(400)
+                            $(".dropdown-contents").stop().slideToggle(400)
                         })
                     }
             }
