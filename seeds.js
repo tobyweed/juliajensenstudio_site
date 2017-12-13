@@ -20,7 +20,7 @@ var data = [
                 parent: "oil"
             },
             {
-                img: "/uploads/storm_body.jpg",
+                img: "/uploads/1513133689742.jpeg",
                 description: "kjadfnljsaldf",
                 parent: "oil"
             }

@@ -10,14 +10,9 @@
     <div class="row display-flex">
         <% paintings.forEach(function(painting){ %>
             <div class="col-md-3 col-sm-6"> 
-                <div class="thumbnail">
-                    <div>
-                        <a href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>">
-                            <img class="thumb-img img-responsive" src="<%=painting.img%>"></img>
-                        </a>
-                    </div>
+                <div class="thumbnail" style="background-image:url(<%=painting.img%>)">
+                    <a class="thumb-link" href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>"></a>
                     <% if (currentUser && paintings.length >= 1) { %>
-                       <a class="btn btn-warning btn-xs" href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/edit">Edit</a>
                        <form action="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/delete?_method=PUT" method="POST">
                            <button class="btn btn-danger btn-xs">Delete</button>
                        </form>

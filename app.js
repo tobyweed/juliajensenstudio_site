@@ -7,8 +7,9 @@ var express = require("express"),
     passport   = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
-    User = require("./models/user")
-    // seedDB = require("./seeds")
+    User = require("./models/user"),
+    cloudinary = require('cloudinary'),
+    seedDB = require("./seeds")
 
 var paintingRoutes = require("./routes/paintings"),
     indexRoutes = require("./routes/index"),
@@ -39,6 +40,16 @@ app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     next();
 });
+
+//cloudinary config
+cloudinary.config({ 
+  cloud_name: 'tobyweed', 
+  api_key: '441336794356661', 
+  api_secret: 'qW7hkwN3rkTfQ1szMWDtQh69GoY' 
+});
+
+console.log("https://res.cloudinary.com/tobyweed/image/fetch/1513133243711");
+console.log("https://res.cloudinary.com/tobyweed/image/fetch/1513133243711.jpeg");
 
 app.use(indexRoutes);
 app.use("/paintings/:type", paintingRoutes);

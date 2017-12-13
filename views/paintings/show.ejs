@@ -32,9 +32,6 @@
     
     <!--These features are visible only to logged in users-->
         <% if(currentUser) { %>
-            <!--Edit button-->
-            <a class="btn btn-warning btn-xs" href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/edit">Edit Painting</a>
-        
             <!--Delete button-->
             <form action="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>/delete?_method=PUT" method="POST">
                <button class="btn btn-danger btn-xs">Delete</button>

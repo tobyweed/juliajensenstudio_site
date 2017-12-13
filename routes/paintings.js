@@ -1,7 +1,8 @@
 var express = require("express"),
     router = express.Router({mergeParams: true}),
     multer = require("multer"),
-    fs = require("fs")
+    fs = require("fs"),
+    cloudinary = require('cloudinary')
     
 var Collection = require("../models/collection")
     
@@ -67,17 +68,22 @@ router.get("/new", middleware.isLoggedIn, function(req,res){
 //CREATE
 router.put("/", middleware.isLoggedIn, upload.single('image'), function(req,res){
     var type = req.params.type;
-    Collection.findOneAndUpdate( {name: type}, 
-        { $push: {'paintings': {img: "/uploads/"+req.file.filename,
-                             description: req.body.description,
-                             parent: type }}},
-        function(err, paintings){
-            if(err){
-                console.log(err);
-                return res.render("error")
-            } else {
-                res.redirect("/paintings/"+type);
-            }
+    var img = "horseman";
+    cloudinary.uploader.upload("./public/uploads/"+req.file.filename, function(result) { 
+        img = result.url;
+        console.log(img);
+        Collection.findOneAndUpdate( {name: type}, 
+            { $push: {'paintings': {img: img,
+                                 description: req.body.description,
+                                 parent: type }}},
+            function(err, paintings){
+                if(err){
+                    console.log(err);
+                    return res.render("error")
+                } else {
+                    res.redirect("/paintings/"+type);
+                }
+        });
     });
 });
 
