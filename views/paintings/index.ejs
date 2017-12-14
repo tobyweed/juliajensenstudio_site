@@ -9,7 +9,7 @@
 <%if(paintings[0]) { %>
     <div class="row display-flex">
         <% paintings.forEach(function(painting){ %>
-            <div class="col-md-3 col-sm-6"> 
+            <div class="col-md-3 col-sm-6 col-xs-12"> 
                 <div class="thumbnail" style="background-image:url(<%=painting.img%>)">
                     <a class="thumb-link" href="/paintings/<%=painting.parent%>/<%=paintings.indexOf(painting)%>"></a>
                     <% if (currentUser && paintings.length >= 1) { %>

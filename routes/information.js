@@ -1,6 +1,7 @@
 var express = require("express"),
     router = express.Router({mergeParams: true}),
-    multer = require("multer")
+    multer = require("multer"),
+    cloudinary = require("cloudinary")
     
 var Info = require("../models/infopage"),
     middleware = require("../middleware")
@@ -82,13 +83,17 @@ router.put("/desc/:page", middleware.isLoggedIn, function(req,res){
 //update image route
 router.put("/img/:page", middleware.isLoggedIn, upload.single('image'), function(req,res){
     var page = req.params.page;
-    Info.findOneAndUpdate({page: page}, {$set:{img: "/uploads/"+req.file.filename,}}, function(err,info){
-        if(err){
-            console.log(err);
-            res.render("error");
-        } else{
-            res.redirect("/information/"+page);
-        }
+    cloudinary.uploader.upload("./public/uploads/"+req.file.filename, function(result) { 
+        var img = result.url;
+        console.log(img);
+        Info.findOneAndUpdate({page: page}, {$set:{img: img,}}, function(err,info){
+            if(err){
+                console.log(err);
+                res.render("error");
+            } else{
+                res.redirect("/information/"+page);
+            }
+        });
     });
 });
 

@@ -68,9 +68,8 @@ router.get("/new", middleware.isLoggedIn, function(req,res){
 //CREATE
 router.put("/", middleware.isLoggedIn, upload.single('image'), function(req,res){
     var type = req.params.type;
-    var img = "horseman";
     cloudinary.uploader.upload("./public/uploads/"+req.file.filename, function(result) { 
-        img = result.url;
+        var img = result.url;
         console.log(img);
         Collection.findOneAndUpdate( {name: type}, 
             { $push: {'paintings': {img: img,
@@ -100,41 +99,41 @@ router.get("/:index", function(req,res){
     });
 });
 
-//EDIT
-router.get("/:index/edit", middleware.isLoggedIn, function(req,res){
-    var index = req.params.index;
-    Collection.findOne({name: req.params.type}, function(err,collection){
-        if(err){
-            console.log(err);
-            return res.render("error")
-        } else{
-            res.render("paintings/edit", {painting:collection.paintings[index], paintings:collection.paintings});
-        }
-    });
-});
+// //EDIT
+// router.get("/:index/edit", middleware.isLoggedIn, function(req,res){
+//     var index = req.params.index;
+//     Collection.findOne({name: req.params.type}, function(err,collection){
+//         if(err){
+//             console.log(err);
+//             return res.render("error")
+//         } else{
+//             res.render("paintings/edit", {painting:collection.paintings[index], paintings:collection.paintings});
+//         }
+//     });
+// });
 
 //UPDATE
-router.put("/:index", middleware.isLoggedIn, upload.single('image'), function(req,res){
-    var type = req.params.type;
-    var index = req.params.index;
-    var painting = {
-        img: "/uploads/"+req.file.filename,
-        description: req.body.painting.description,
-        parent: type
-    }
-    var $set = { $set: {} };
-    $set.$set['paintings.' + index] = painting;
-    Collection.findOneAndUpdate( {name: type}, 
-        $set,
-        function(err, paintings){
-            if(err){
-                console.log(err);
-                return res.render("error")
-            } else {
-                res.redirect("/paintings/"+type);
-            }
-    });
-});
+// router.put("/:index", middleware.isLoggedIn, upload.single('image'), function(req,res){
+//     var type = req.params.type;
+//     var index = req.params.index;
+//     var painting = {
+//         img: "/uploads/"+req.file.filename,
+//         description: req.body.painting.description,
+//         parent: type
+//     }
+//     var $set = { $set: {} };
+//     $set.$set['paintings.' + index] = painting;
+//     Collection.findOneAndUpdate( {name: type}, 
+//         $set,
+//         function(err, paintings){
+//             if(err){
+//                 console.log(err);
+//                 return res.render("error")
+//             } else {
+//                 res.redirect("/paintings/"+type);
+//             }
+//     });
+// });
 
 //DESTROY
 router.put("/:index/delete", middleware.isLoggedIn, function(req,res){
