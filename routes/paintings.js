@@ -145,12 +145,12 @@ router.put("/:index/delete", middleware.isLoggedIn, function(req,res){
             return res.render("error")
         } else{
             var idOfRemove = collection.paintings[index]._id;
-            fs.unlink("./public"+collection.paintings[index].img, function(err){
-                if(err){
-                    console.log(err);
-                    return res.render("error")
-                }
-            })
+            // fs.unlink("./public"+collection.paintings[index].img, function(err){
+            //     if(err){
+            //         console.log(err);
+            //         return res.render("error")
+            //     }
+            // })
             Collection.findOneAndUpdate({name:type},{$pull:{ paintings:{ _id: idOfRemove}}}, function(err,removedPainting){
                 if(err){
                     console.log(err);

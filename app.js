@@ -8,8 +8,8 @@ var express = require("express"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
     User = require("./models/user"),
-    cloudinary = require('cloudinary')
-    // seedDB = require("./seeds")
+    cloudinary = require('cloudinary'),
+    seedDB = require("./seeds")
 
 var paintingRoutes = require("./routes/paintings"),
     indexRoutes = require("./routes/index"),
