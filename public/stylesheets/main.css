@@ -143,6 +143,10 @@ a {
   text-align: center;
 }
 
+.rightCol-row {
+  max-width: 83vw;
+}
+
 /*Added to the contents of the sidebar*/
 #sidebar-nav {
   position: absolute;
@@ -241,4 +245,12 @@ a {
 
 .info-edit-form {
   display: none;
+}
+
+.infodiv p {
+  color: #636363;
+}
+
+.infodiv p b{
+  color: black;
 }

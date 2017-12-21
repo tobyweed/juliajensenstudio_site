@@ -1,0 +1,17 @@
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //function to show and hide text edit forms on info pages.
+    function show(name) {
+        //show or hide the form, and switch the text to accurately respresent that process
+        $("#" + name).toggle();
+        var btnstate = $("#" + name + "btn").html();
+        if (btnstate === "Edit") {
+            $("#" + name + "btn").html("Hide");
+        }
+        else {
+            $("#" + name + "btn").html("Edit");
+        }
+    }
+</script>

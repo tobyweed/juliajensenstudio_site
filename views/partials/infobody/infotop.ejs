@@ -1,5 +1,5 @@
 <!--div which contains the page's contact-->
-<div class="row display-flex">
+<div class="row display-flex rightCol-row">
     <!--photo for decoration-->
     <div class="col-sm-6 infodiv">
         <div class="container-fluid">
@@ -33,32 +33,3 @@
     </div>
     <!--text describing the page-->
     <div class="col-sm-6 infodiv">
-        <p class="info-text"><%= info.text %></p>
-        <!--if the user is logged in, show them the edit button. If you click the button, a form opens up.-->
-        <% if(currentUser){ %>
-            <button onclick="show('<%=infocode%>text')" id="<%=infocode%>textbtn">Edit</button>
-            <form action="text/<%=page%>/?_method=PUT" method="POST" id="<%=infocode%>text" class="info-edit-form">
-                    <div class="form-group">
-                    <textarea id="<%=infocode%>textarea" name="info[text]"></textarea>
-                    <!--this button saves the text to the p and hides the form-->
-                    <button onclick="show('<%=infocode%>text')">Save</button>
-                </div>
-            </form>
-        <% } %>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    //function to show and hide text edit forms on info pages.
-    function show(name) {
-        //show or hide the form, and switch the text to accurately respresent that process
-        $("#" + name).toggle();
-        var btnstate = $("#" + name + "btn").html();
-        if (btnstate === "Edit") {
-            $("#" + name + "btn").html("Hide");
-        }
-        else {
-            $("#" + name + "btn").html("Edit");
-        }
-    }
-</script>
