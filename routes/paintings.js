@@ -43,25 +43,25 @@ var upload = multer({
 
 //INDEX
 router.get("/",function(req,res){
-    Collection.findOne({name: req.params.type}, function(err, paintings){
+    Collection.findOne({name: req.params.type}, function(err, collection){
        if(err){
            console.log(err);
            return res.render("error");
-           
        } else {
-           res.render("paintings/index",{paintings:paintings.paintings, parent:req.params.type});
+          var paintingsRev = invertArray(collection.paintings);
+          res.render("paintings/index",{paintings:paintingsRev, parent:req.params.type});
        }
     });
 });
 
 //NEW
 router.get("/new", middleware.isLoggedIn, function(req,res){
-    Collection.findOne({name: req.params.type}, function(err, paintings){
+    Collection.findOne({name: req.params.type}, function(err, collection){
        if(err){
            console.log(err);
            return res.render("error")
        } else {
-           res.render("paintings/new",{paintings:paintings.paintings,parent:req.params.type});
+           res.render("paintings/new",{paintings:collection.paintings,parent:req.params.type});
        }
     });
 });
@@ -95,7 +95,8 @@ router.get("/:index", function(req,res){
            console.log(err);
            return res.render("error")
        } else {
-            res.render("paintings/show", {painting: collection.paintings[index],paintings: collection.paintings});
+          var paintingsRev = invertArray(collection.paintings);
+          res.render("paintings/show", {painting: paintingsRev[index],paintings: paintingsRev});
        }
     });
 });
@@ -145,13 +146,8 @@ router.put("/:index/delete", middleware.isLoggedIn, function(req,res){
             console.log(err);
             return res.render("error")
         } else{
-            var idOfRemove = collection.paintings[index]._id;
-            // fs.unlink("./public"+collection.paintings[index].img, function(err){
-            //     if(err){
-            //         console.log(err);
-            //         return res.render("error")
-            //     }
-            // })
+            var paintingsRev = invertArray(collection.paintings);
+            var idOfRemove = paintingsRev[index]._id;
             Collection.findOneAndUpdate({name:type},{$pull:{ paintings:{ _id: idOfRemove}}}, function(err,removedPainting){
                 if(err){
                     console.log(err);
@@ -163,6 +159,16 @@ router.put("/:index/delete", middleware.isLoggedIn, function(req,res){
         }
     })
 });
+
+function invertArray(array){
+    var paintingsArray = array;
+    var numPaints = paintingsArray.length;
+    var paintingsRev = new Array(numPaints);
+    for(var i = 0; i<numPaints; i++){
+      paintingsRev[i] = paintingsArray[numPaints-1-i];
+    }
+    return paintingsRev;
+}
 
 
 //Export router
