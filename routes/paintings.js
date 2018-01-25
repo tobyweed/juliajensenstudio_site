@@ -46,7 +46,8 @@ router.get("/",function(req,res){
     Collection.findOne({name: req.params.type}, function(err, paintings){
        if(err){
            console.log(err);
-           return res.render("error")
+           return res.render("error");
+           
        } else {
            res.render("paintings/index",{paintings:paintings.paintings, parent:req.params.type});
        }
