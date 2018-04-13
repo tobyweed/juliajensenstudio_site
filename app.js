@@ -18,7 +18,7 @@ var paintingRoutes = require("./routes/paintings"),
 var middleware = require("./middleware")
 
 //Setup
-mongoose.connect("mongodb://tobyweed:hedwig1553@ds123976.mlab.com:23976/juliajensenstudio");
+mongoose.connect("mongodb://"+ process.env.MONGO_USER + ":" + process.env.MONGO_PASSWORD + "@ds123976.mlab.com:23976/juliajensenstudio");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
