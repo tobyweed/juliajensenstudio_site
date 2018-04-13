@@ -43,13 +43,10 @@ app.use(function(req,res,next){
 
 //cloudinary config
 cloudinary.config({ 
-  cloud_name: 'tobyweed', 
-  api_key: '441336794356661', 
-  api_secret: 'qW7hkwN3rkTfQ1szMWDtQh69GoY' 
+  cloud_name: process.env.CLOUD_USER, 
+  api_key: process.env.CLOUD_API_KEY, 
+  api_secret: process.env.CLOUD_API_SECRET
 });
-
-console.log("https://res.cloudinary.com/tobyweed/image/fetch/1513133243711");
-console.log("https://res.cloudinary.com/tobyweed/image/fetch/1513133243711.jpeg");
 
 app.use(indexRoutes);
 app.use("/paintings/:type", paintingRoutes);

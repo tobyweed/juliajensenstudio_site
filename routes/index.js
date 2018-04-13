@@ -59,8 +59,8 @@ module.exports = router;
 
 
 // New user registration in case you want to add a new user
-// var newUser = new User({username: "juliajensen"});
-// User.register(newUser, "1553", function(err,user){
+// var newUser = new User({username: "username"});
+// User.register(newUser, "password", function(err,user){
 //         if(err){
 //         console.log(err);
 //         }
